@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <header></header>
+  <body>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
+      <div>
+        <h2>Please read the QR Code for your information</h2>
+      </div>
+      {% if data %}
+      <div>
+        <img style="width: 300px" src="{{data}}" alt="" />
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

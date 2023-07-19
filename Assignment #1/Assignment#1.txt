@@ -1,0 +1,31 @@
+Question 1: 
+
+SELECT 
+    M.Medication_ID,
+    M.Doses,
+    M.Expiration_Date,
+    COUNT(MP.Prescription_ID) AS Patient_Count,
+    CASE
+        WHEN M.Expiration_Date < CURDATE() THEN 'Expired'
+        ELSE 'Active'
+    END AS Medication_Status
+FROM 
+    Medication as M
+INNER JOIN 
+    Medication_Prescribed as MP ON M.Medication_ID = MP.Medication_ID
+GROUP BY 
+    M.Medication_ID, M.Doses, M.Expiration_Date;
+------------------------------------------------------------------------
+Question 2: 
+
+SELECT dr.Doctor_ID,dr.Field,dr.Degree,dr.Department_ID, dr.Worker_ID,
+d.Departiment_ID,d.workers,d.Building_Location,
+drp.Time,
+p.pationt_Id ,p.Contact_number,p.Name,p.Adress,p.Gender,p.Age,
+
+FROM Doctor AS dr
+INNER JOIN Department AS d ON dr.Department_ID = d.Departiment_ID
+LEFT JOIN Doctor_Patient AS drp ON dr.Doctor_ID = drp.Doctor_ID
+LEFT JOIN Patient AS p ON drp.PAtiont = p.pationt_Id
+WHERE p.Age > 12 AND drp.Time NOT LIKE '2022%'
+ORDER BY dr.Name DESC, p.Name ASC
